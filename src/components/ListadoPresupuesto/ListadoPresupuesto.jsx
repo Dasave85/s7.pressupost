@@ -51,6 +51,7 @@ export const ListadoPresupuesto = ({
         </div>
         {presupuestos.map((presupuesto, i) => {
           if (!presupuesto.usuario) return;
+
           const {
             nombrePresupuesto,
             usuario,
@@ -61,6 +62,7 @@ export const ListadoPresupuesto = ({
             total,
             fecha,
           } = presupuesto;
+
           return (
             <div
               key={i}

@@ -1,34 +1,17 @@
-import { useState } from "react";
+import { useInputPresupuesto } from "../../hooks/useInputPresupuesto";
 
 export const InputPresupuesto = ({ newPresupuesto, buscarPresupuesto }) => {
-  const [inputValue, setInputValue] = useState({
-    presupuesto: "",
-    usuario: "",
-  });
-  const { presupuesto, usuario } = inputValue;
-
-  const handleOnChange = (e) => {
-    setInputValue({
-      ...inputValue,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    newPresupuesto(presupuesto, usuario);
-    setInputValue({ ...inputValue, presupuesto: "", usuario: "" });
-  };
-
-  const sendInput = () => {
-    buscarPresupuesto(presupuesto, usuario);
-    setInputValue({ ...inputValue, presupuesto: "", usuario: "" });
-  };
+  const {
+    inputValue,
+    handleOnChange,
+    onSubmit,
+    sendInput,
+  } = useInputPresupuesto();
 
   return (
     <>
       <div className="row mt-3">
-        <form id="form1" onSubmit={(event) => onSubmit(event)}>
+        <form id="form1" onSubmit={(event) => onSubmit(event, newPresupuesto)}>
           <div className="col-12">
             <input
               className="form-control mb-2"
@@ -59,7 +42,10 @@ export const InputPresupuesto = ({ newPresupuesto, buscarPresupuesto }) => {
             type="submit"
             value={"Guardar"}
           />
-          <button className="btn btn-secondary" onClick={sendInput}>
+          <button
+            className="btn btn-secondary"
+            onClick={(e) => sendInput(buscarPresupuesto)}
+          >
             Buscar Presupuesto
           </button>
         </div>
