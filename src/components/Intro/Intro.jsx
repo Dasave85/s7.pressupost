@@ -1,56 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-
-const DivIntro = styled.div`
-display: flex;
-flex-flow: column;
-padding-top: 30px;
-background: #efd280;
-height:600px;
-border-radius: 10px;
-
-    h1{
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin-top: 30px;
-        margin-left: 10px;
-        background: #ecdede;
-        padding: 20px 35px;
-        max-width: fit-content; 
-        border-radius: 5px;
-        align-self:center;
-
-    }
-    hr{
-        width:100%;
-    }
-    p{
-        
-        font-size: 18px;
-        font-weight: lighter;
-        margin-left: 10px;
-    }
-
-    a{
-        
-        margin: 10px;
-        background: blue;
-        color: white;
-        text-decoration: none;
-        padding: 8px;
-        border-radius: 5px;
-        max-width: fit-content; 
-    }
-
-`
+import React from "react";
+import { Link } from "react-router-dom";
 
 export const Intro = () => {
   return (
-    <DivIntro>
-        <h1>Bienvenido Usuario</h1>
-        <hr />
-        <p>En esta web podras generar presupuestos segun tus necesidades</p>
-        <Link to={'/presupuesto'}>Generador de presupuesto</Link>
-    </ DivIntro>
-  )
-}
+    <div className="container ">
+      <div className="row">
+        <div className="col-12 my-3">
+          <h1 className="display-3">Bienvenido Usuario</h1>
+          <hr />
+        </div>
+        <div className="col-12">
+          <p className="fw-lighter">
+            En esta web podras generar presupuestos segun tus necesidades
+          </p>
+        </div>
+        <div className="col-12 my-3">
+          <Link
+            className="text-decoration-none border border-primary border-3 rounded-3 p-1 fw-bolder"
+            to={"/presupuesto"}
+          >
+            Generador de presupuesto
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
