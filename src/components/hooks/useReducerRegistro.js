@@ -2,14 +2,14 @@ import { useReducer } from "react";
 
 const listadoInicial = [
   {
-    nombrePresupuesto: null,
-    usuario: null,
-    input1: null,
-    input2: null,
-    input3: null,
-    opciones: null,
-    total: null,
-    fecha: null,
+    nombrePresupuesto: "",
+    usuario: "",
+    input1: "",
+    input2: "",
+    input3: "",
+    opciones: "",
+    total: "",
+    fecha: "",
   },
 ];
 
@@ -105,10 +105,11 @@ export const useReducerRegistro = () => {
       return nombrePresupuesto === nombre || usuario === usr;
     });
 
-    if (busca.length < 1) {
+    if (busca.length < 2) {
       alert("Presupuesto no encontrado");
       return;
     }
+    console.log(busca);
 
     const accion = {
       type: "[PRESUPUESTO] buscar presupuesto",
