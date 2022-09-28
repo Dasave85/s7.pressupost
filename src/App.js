@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { Checkbox } from "./components/Checkbox/Checkbox";
+import { useReducerRegistro } from "./components/hooks/useReducerRegistro";
+import { ListadoPresupuesto } from "./components/ListadoPresupuesto/ListadoPresupuesto";
 
-function App() {
+export const App = () => {
+  const {
+    state,
+    listadoMostrar,
+    addPresupuesto,
+    ordenarPorPresupuesto,
+    ordenarPorFecha,
+    reiniciarListado,
+    buscarPresupuesto,
+  } = useReducerRegistro();
+
+  useEffect(() => {
+    localStorage.setItem("presupuestos", JSON.stringify(state));
+  }, [state]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="row">
+        <div className="col-6">
+          <Checkbox
+            addPresupuesto={addPresupuesto}
+            buscarPresupuesto={buscarPresupuesto}
+          />
+        </div>
+        <div className="col-6 border-start border-1 ">
+          <ListadoPresupuesto
+            presupuestos={listadoMostrar}
+            ordenarPorPresupuesto={ordenarPorPresupuesto}
+            ordenarPorFecha={ordenarPorFecha}
+            reiniciarListado={reiniciarListado}
+          />
+        </div>
+      </div>
+    </>
   );
-}
-
-export default App;
+};
